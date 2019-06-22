@@ -3,3 +3,4 @@
 
 The algorithms being used are sligthly modified versions of Run-Length Encoding.
 
+Small note: The solution is splitted into 2 projects because I may use WPF in future if more features would be added.
