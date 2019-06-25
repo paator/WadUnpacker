@@ -25,7 +25,7 @@ namespace WadUnpacker.Core
             return reader;
         }
 
-        public static void Decompress(BinaryReader reader, IEnumerable<IdxLine> idx)
+        public static void Decompress(BinaryReader reader, IEnumerable<IdxLine> idx, string path)
         {
             const int wOffset = 2;
             const int bOffset = 3;
@@ -33,7 +33,13 @@ namespace WadUnpacker.Core
             foreach (var file in idx)
             {
                 var maxPosition = file.Length + file.Offset;
-                using (var writer = new BinaryWriter(File.Open(file.FileName, FileMode.Create)))
+                
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                
+                using (var writer = new BinaryWriter(File.Open(path + "\\" + file.FileName, FileMode.Create)))
                 {
                     switch (file.ConversionType)
                     {

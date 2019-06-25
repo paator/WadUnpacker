@@ -10,14 +10,14 @@ namespace WadUnpacker.Presentation
         {
             Console.WriteLine("Croc 1 WAD Unpacker");
 
-            if (args.Length != 2)
+            if (args.Length < 3)
             {
-                Console.WriteLine("Please specify WAD then IDX file locations as arguments");
+                Console.WriteLine("Please specify WAD, IDX files then path of unpacked files locations as arguments");
             }
 
             try
             {
-                Compression.Decompress(Compression.LoadWad(args[0]), Compression.LoadIdx(args[1]));
+                Compression.Decompress(Compression.LoadWad(args[0]), Compression.LoadIdx(args[1]), args[2]);
             }
             catch (Exception e)
             {
@@ -26,16 +26,17 @@ namespace WadUnpacker.Presentation
                     case IOException _:
                     case IndexOutOfRangeException _:
                         Console.WriteLine("Wrong IDX and/or WAD files!");
-                        break;
+                        throw;
                     case ArgumentOutOfRangeException _:
                         Console.WriteLine(
                             "Wrong or no IDX file loaded - please check if IDX file has the same name as WAD file");
-                        break;
+                        throw;
                     default:
                         Console.WriteLine("Unhandled exception: {0}", e);
-                        break;
+                        throw;
                 }
             }
+            Console.WriteLine("{0} unpacking complete", args[0]);
 
             return 0;
         }
