@@ -29,15 +29,15 @@ namespace WadUnpacker.Core
         {
             const int wOffset = 2;
             const int bOffset = 3;
-
+            
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            
             foreach (var file in idx)
             {
                 var maxPosition = file.Length + file.Offset;
-                
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
                 
                 using (var writer = new BinaryWriter(File.Open(path + "\\" + file.FileName, FileMode.Create)))
                 {
