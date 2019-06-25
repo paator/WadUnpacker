@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 
 namespace WadUnpacker.Core
 {
@@ -8,14 +8,7 @@ namespace WadUnpacker.Core
         public int Offset { get; }
         public int Length { get; }
         public int UncompressedLength { get; }
-        public Conversion ConversionType { get; }
-
-        public enum Conversion
-        {
-            UType = 'u',
-            WType = 'w',
-            BType = 'b'
-        }
+        public char ConversionType { get; }
 
         public IdxLine(string line)
         {
@@ -24,8 +17,7 @@ namespace WadUnpacker.Core
             Offset = int.Parse(lines[1]);
             Length = int.Parse(lines[2]);
             UncompressedLength = int.Parse(lines[3]);
-            ConversionType = (Conversion) Enum.Parse(typeof(Conversion), lines[4]);
+            ConversionType = lines[4].FirstOrDefault();
         }
     }
 }
-

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace WadUnpacker.Core
 {
-    public class Compression
+    public static class Compression
     {
         //parser turns lines from .idx file into IdxLine class objects
         public static IEnumerable<IdxLine> LoadIdx(string idxLocation)
@@ -18,7 +18,7 @@ namespace WadUnpacker.Core
 
             return idxList;
         }
-
+        
         public static BinaryReader LoadWad(string wadLocation)
         {
             var reader = new BinaryReader(File.Open(wadLocation, FileMode.Open));
@@ -38,13 +38,13 @@ namespace WadUnpacker.Core
                     switch (file.ConversionType)
                     {
                         //already uncompressed
-                        case IdxLine.Conversion.UType:
+                        case 'u':
                         {
                             writer.Write(reader.ReadBytes(maxPosition));
                             break;
                         }
 
-                        case IdxLine.Conversion.WType:
+                        case 'w':
                         {
                             while (reader.BaseStream.Position < maxPosition)
                             {
@@ -65,11 +65,10 @@ namespace WadUnpacker.Core
                                     }
                                 }
                             }
-
                             break;
                         }
 
-                        case IdxLine.Conversion.BType:
+                        case 'b':
                         {
                             while (reader.BaseStream.Position < maxPosition)
                             {
@@ -90,12 +89,10 @@ namespace WadUnpacker.Core
                                     }
                                 }
                             }
-
                             break;
                         }
 
-                        default:
-                            throw new ArgumentOutOfRangeException();
+                        default: throw new ArgumentOutOfRangeException();
                     }
                 }
             }
