@@ -10,13 +10,6 @@ namespace WadUnpacker.Core
         public int UncompressedLength { get; }
         public char ConversionType { get; }
         
-        public enum Conversion
-                {
-                    UType = 'u',
-                    WType = 'w',
-                    BType = 'b'
-                }
-
         public IdxLine(string line)
         {
             var lines = line.Split(',');
