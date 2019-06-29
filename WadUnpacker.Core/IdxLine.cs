@@ -9,6 +9,13 @@ namespace WadUnpacker.Core
         public int Length { get; }
         public int UncompressedLength { get; }
         public char ConversionType { get; }
+        
+        public enum Conversion
+                {
+                    UType = 'u',
+                    WType = 'w',
+                    BType = 'b'
+                }
 
         public IdxLine(string line)
         {
