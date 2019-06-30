@@ -12,7 +12,8 @@ namespace WadUnpacker.Presentation
 
             if (args.Length < 3)
             {
-                Console.WriteLine("Please specify WAD, IDX files then path of unpacked files locations as arguments");
+                Console.WriteLine("Please specify WAD, IDX files then path of unpacked files locations as arguments.");
+                Environment.Exit(-1);
             }
 
             try
@@ -29,14 +30,14 @@ namespace WadUnpacker.Presentation
                         throw;
                     case ArgumentOutOfRangeException _:
                         Console.WriteLine(
-                            "Wrong or no IDX file loaded - please check if IDX file has the same name as WAD file");
+                            "Wrong or no IDX file loaded - please check if IDX file has the same name as WAD file.");
                         throw;
                     default:
                         Console.WriteLine("Unhandled exception: {0}", e);
                         throw;
                 }
             }
-            Console.WriteLine("{0} unpacking complete", args[0]);
+            Console.WriteLine("{0} unpacking complete. :)", args[0]);
 
             return 0;
         }
