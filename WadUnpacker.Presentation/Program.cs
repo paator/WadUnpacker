@@ -6,7 +6,7 @@ namespace WadUnpacker.Presentation
 {
     public static class Program
     {
-        private static int Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Croc 1 WAD Unpacker");
 
@@ -38,8 +38,6 @@ namespace WadUnpacker.Presentation
                 }
             }
             Console.WriteLine("{0} unpacking complete. :)", args[0]);
-
-            return 0;
         }
     }
 }
