@@ -4,7 +4,7 @@ Croc: Legend of the Gobbos is a platform game developed by Argonaut Games and pu
 ## How does it work?
 Unpacker uses .idx files with corresponding file names to .wad file names. For example, maps.wad needs maps.idx for successful decompression, as it contains essential information about files in archive. Each line in the .idx file represents file data in the corresponding .wad file. The algorithms being used are sligthly modified versions of [Run-Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding).
 ## Usage:
-Both library and execution projects use .NET Core 3.1 runtime. They are splitted due to the fact that I may upgrade project with more features in future.
+Both library and execution projects use .NET Core 3.1 Runtime. They are splitted due to the fact that I may upgrade project with more features in future.
 Compile with:
 ```
 dotnet build
